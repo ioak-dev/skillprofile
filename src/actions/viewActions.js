@@ -6,12 +6,8 @@ import {
 
 export const reloadView = (type, loggedInUserId) => dispatch => {
     console.log('fetching HTTP');
-    console.log(type, loggedInUserId);
     axios.get('http://localhost:8080/wizard/' + type + '/' + loggedInUserId)
     .then((response) => {
-        
-        console.log(response);
-
         dispatch({
             type: UPDATE_VIEW,
             payload: {
@@ -23,14 +19,10 @@ export const reloadView = (type, loggedInUserId) => dispatch => {
 
 export const removeItem = (type, loggedInUserId, requestId) => dispatch => {
     console.log('fetching HTTP');
-    console.log(requestId);
     axios.delete('http://localhost:8080/wizard/' + requestId)
     .then(() => {
         axios.get('http://localhost:8080/wizard/' + type + '/' + loggedInUserId)
         .then((response) => {
-            
-            console.log(response);
-    
             dispatch({
                 type: UPDATE_VIEW,
                 payload: {

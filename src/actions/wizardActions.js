@@ -9,8 +9,7 @@ import { SECTION_02, SECTION_REVIEW } from '../components/wizard/section-types'
 
 export const reloadWizard = (id, loggedInUserId) => dispatch => {
     console.log('fetching HTTP');
-    console.log(id, loggedInUserId);
-    axios.get('http://localhost:8080/wizard/' + id)
+    axios.get('http://localhost:8080/user/' + loggedInUserId + '/profile')
     .then((response) => {
         const wizard = response.data;
         let currentpage = SECTION_REVIEW;
@@ -22,18 +21,8 @@ export const reloadWizard = (id, loggedInUserId) => dispatch => {
         dispatch({
             type: UPDATE_WIZARD,
             payload: {
-                wizardid: wizard.id,
-                currentpage: currentpage,
-                status: wizard.status,
-                createdBy: wizard.createdBy,
-                traveltype: wizard.traveltype,
-                clientinfo: wizard.clientinfo,
-                purposeofvisit: wizard.purposeofvisit,
-                flightdetails: wizard.flightdetails,
-                visa: wizard.visa,
-                hoteldetails: wizard.hoteldetails,
-                localtransportdetails: wizard.localtransportdetails,
-                review: wizard.review
+                currentpage: currentpage
+
             }
         })
     });
@@ -73,40 +62,29 @@ export const goToPage = (page) => dispatch => {
     })
 }
 
-export const updateWizard = (type, id, data) => dispatch => {
+export const updateWizard = (section, data) => dispatch => {
     dispatch({
-        type: type,
-        id: id,
-        payload: data
+        type: UPDATE_WIZARD,
+        payload: {
+            [section]: data
+        }
     })
 }
 
 export const saveWizard = (userId, data) => dispatch => {
-    console.log(data);
     axios.put('http://localhost:8080/wizard/' + userId, data, null)
         .then((response) => {
             const wizard = response.data;
             dispatch({
                 type: UPDATE_WIZARD,
                 payload: {
-                    wizardid: wizard.id,
-                    status: wizard.status,
-                    createdBy: wizard.createdBy,
-                    traveltype: wizard.traveltype,
-                    clientinfo: wizard.clientinfo,
-                    purposeofvisit: wizard.purposeofvisit,
-                    flightdetails: wizard.flightdetails,
-                    visa: wizard.visa,
-                    hoteldetails: wizard.hoteldetails,
-                    localtransportdetails: wizard.localtransportdetails,
-                    review: wizard.review
+                    wizardid: wizard.id
                 }
             })
         })
 }
 
 export const submitWizard = (userId, data) => dispatch => {
-    console.log(data);
     axios.put('http://localhost:8080/wizard/' + userId, data, null)
         .then((response) => {
 
@@ -117,17 +95,7 @@ export const submitWizard = (userId, data) => dispatch => {
                 dispatch({
                     type: UPDATE_WIZARD,
                     payload: {
-                        wizardid: wizard.id,
-                        status: wizard.status,
-                        createdBy: wizard.createdBy,
-                        traveltype: wizard.traveltype,
-                        clientinfo: wizard.clientinfo,
-                        purposeofvisit: wizard.purposeofvisit,
-                        flightdetails: wizard.flightdetails,
-                        visa: wizard.visa,
-                        hoteldetails: wizard.hoteldetails,
-                        localtransportdetails: wizard.localtransportdetails,
-                        review: wizard.review
+                        wizardid: wizard.id
                     }
                 })
             })
@@ -135,7 +103,6 @@ export const submitWizard = (userId, data) => dispatch => {
 }
 
 export const completeWizard = (userId, data) => dispatch => {
-    console.log(data);
     axios.put('http://localhost:8080/wizard/' + userId, data, null)
         .then((response) => {
 
@@ -146,76 +113,7 @@ export const completeWizard = (userId, data) => dispatch => {
                 dispatch({
                     type: UPDATE_WIZARD,
                     payload: {
-                        wizardid: wizard.id,
-                        status: wizard.status,
-                        createdBy: wizard.createdBy,
-                        traveltype: wizard.traveltype,
-                        clientinfo: wizard.clientinfo,
-                        purposeofvisit: wizard.purposeofvisit,
-                        flightdetails: wizard.flightdetails,
-                        visa: wizard.visa,
-                        hoteldetails: wizard.hoteldetails,
-                        localtransportdetails: wizard.localtransportdetails,
-                        review: wizard.review
-                    }
-                })
-            })
-        })
-}
-
-
-export const approveWizard = (userId, data) => dispatch => {
-    console.log(data);
-    axios.put('http://localhost:8080/wizard/' + userId, data, null)
-        .then((response) => {
-
-            axios.post('http://localhost:8080/wizard/' + response.data.id + '/approve/' + userId)
-            .then((response) => {
-            
-                const wizard = response.data;
-                dispatch({
-                    type: UPDATE_WIZARD,
-                    payload: {
-                        wizardid: wizard.id,
-                        status: wizard.status,
-                        createdBy: wizard.createdBy,
-                        traveltype: wizard.traveltype,
-                        clientinfo: wizard.clientinfo,
-                        purposeofvisit: wizard.purposeofvisit,
-                        flightdetails: wizard.flightdetails,
-                        visa: wizard.visa,
-                        hoteldetails: wizard.hoteldetails,
-                        localtransportdetails: wizard.localtransportdetails,
-                        review: wizard.review
-                    }
-                })
-            })
-        })
-}
-
-export const rejectWizard = (userId, data) => dispatch => {
-    console.log(data);
-    axios.put('http://localhost:8080/wizard/' + userId, data, null)
-        .then((response) => {
-
-            axios.post('http://localhost:8080/wizard/' + response.data.id + '/reject/' + userId)
-            .then((response) => {
-            
-                const wizard = response.data;
-                dispatch({
-                    type: UPDATE_WIZARD,
-                    payload: {
-                        wizardid: wizard.id,
-                        status: wizard.status,
-                        createdBy: wizard.createdBy,
-                        traveltype: wizard.traveltype,
-                        clientinfo: wizard.clientinfo,
-                        purposeofvisit: wizard.purposeofvisit,
-                        flightdetails: wizard.flightdetails,
-                        visa: wizard.visa,
-                        hoteldetails: wizard.hoteldetails,
-                        localtransportdetails: wizard.localtransportdetails,
-                        review: wizard.review
+                        wizardid: wizard.id
                     }
                 })
             })

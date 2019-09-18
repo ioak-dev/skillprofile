@@ -15,7 +15,6 @@ export const reloadLoggedUser = (email) => dispatch => {
         console.log('fetching HTTP');
         axios.get('http://localhost:8080/person/email/' + email)
         .then((user) => {
-            console.log(user.data);
             dispatch({
                 type: RELOAD_LOGGED_USER,
                 payload: {

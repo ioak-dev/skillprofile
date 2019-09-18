@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Button, Typography, Fab } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import ArcButton from '../components/ui/elements/arc-button';
 
 import { connect } from 'react-redux';

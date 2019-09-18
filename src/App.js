@@ -5,12 +5,10 @@ import { Route, Switch } from 'react-router-dom';
 import Login from './pages/login';
 import Home from './pages/home';
 import CreateRequest from './pages/createrequest';
-import ViewRequests from './pages/viewrequests';
 
 import Navigation from './components/Navigation';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import ManageRequests from './pages/managerequests';
 
 const arcTheme = createMuiTheme({
     typography: {
@@ -44,8 +42,6 @@ class App extends Component {
           <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/createrequest" component={CreateRequest} />
-          <Route path="/viewrequests" component={ViewRequests} />
-          <Route path="/controlrequests" component={ManageRequests} />
         </Switch>
       </MuiThemeProvider>
     );

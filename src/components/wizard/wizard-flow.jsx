@@ -39,18 +39,12 @@ class WizardFlow extends React.Component {
                 this.props.submit();
                 this.closeDialog();
                 break;
-            case 'approve':
-                this.props.approve();
-                this.closeDialog();
-                break;
-            case 'reject':
-                this.props.reject();
-                this.closeDialog();
-                break;
             case 'complete':
                 this.props.complete();
                 this.closeDialog();
                 break;
+            default:
+                    this.closeDialog();
         }
     }
 

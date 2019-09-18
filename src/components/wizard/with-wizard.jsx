@@ -1,10 +1,9 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard, submitWizard, approveWizard, rejectWizard, saveWizard, completeWizard } from '../../actions/wizardActions';
+import { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard } from '../../actions/wizardActions';
 import moment from 'moment';
-import { SECTION_OUTCOME_SAVE, SECTION_OUTCOME_SUBMIT, SECTION_OUTCOME_APPROVE, SECTION_OUTCOME_REJECT, SECTION_OUTCOME_COMPLETE } from '../wizard/section-types'
 
-const withWizard = (WrappedComponent, dataref) => {
+const withWizard = (WrappedComponent, dataref, category) => {
     class Wrapper extends Component {
         componentDidMount() {
             this.props.fetchWizard();
@@ -31,7 +30,7 @@ const withWizard = (WrappedComponent, dataref) => {
 
             this.handlechange = this.handlechange.bind(this);
             this.handledatechange = this.handledatechange.bind(this);
-            this.submit = this.submit.bind(this);
+            // this.submit = this.submit.bind(this);
         }
 
 
@@ -46,16 +45,12 @@ const withWizard = (WrappedComponent, dataref) => {
             );
         }
 
-
-        handlechange(event) {
-            this.setState(
-                {
-                    [dataref]: {
-                        ...this.state[dataref],
-                        [event.currentTarget.name]: event.currentTarget.value
-                    }
-                }
-            )
+        handlechange = (event, index) => {
+            const node = this.state[dataref];
+            node[index][event.currentTarget.name] = event.currentTarget.value;
+            this.setState({
+                [dataref]: node
+            });
         }
 
         getReducerType() {
@@ -70,7 +65,8 @@ const withWizard = (WrappedComponent, dataref) => {
         }
 
         nextPage(count) {
-            this.props.updateWizard(this.getReducerType(), "1", this.state);
+            console.log(this.state[dataref]);
+            this.props.updateWizard(dataref, this.state[dataref]);
             this.props.goToNextPage(this.props.currentpage, count);
         }
 
@@ -83,91 +79,6 @@ const withWizard = (WrappedComponent, dataref) => {
             this.props.goToPreviousPage(this.props.currentpage, count);
         }
 
-        submit(userId) {
-            this.props.submitWizard(userId, {
-                id: this.props.wizardid,
-                createdBy: this.props.createdBy,
-                traveltype: this.props.traveltype,
-                clientinfo: this.props.clientinfo,
-                purposeofvisit: this.props.purposeofvisit,
-                flightdetails: this.props.flightdetails,
-                hoteldetails: this.props.hoteldetails,
-                localtransportdetails: this.props.localtransportdetails,
-                visa: this.props.visa,
-                review: this.state.review,
-                status: this.props.status.name
-            });
-            this.props.goToPage(SECTION_OUTCOME_SUBMIT);
-        }
-
-        approve(userId) {
-            this.props.approveWizard(userId, {
-                id: this.props.wizardid,
-                createdBy: this.props.createdBy,
-                traveltype: this.props.traveltype,
-                clientinfo: this.props.clientinfo,
-                purposeofvisit: this.props.purposeofvisit,
-                flightdetails: this.props.flightdetails,
-                hoteldetails: this.props.hoteldetails,
-                localtransportdetails: this.props.localtransportdetails,
-                visa: this.props.visa,
-                review: this.state.review,
-                status: this.props.status.name
-            });
-            this.props.goToPage(SECTION_OUTCOME_APPROVE);
-        }
-
-        reject(userId) {
-            this.props.rejectWizard(userId, {
-                id: this.props.wizardid,
-                createdBy: this.props.createdBy,
-                traveltype: this.props.traveltype,
-                clientinfo: this.props.clientinfo,
-                purposeofvisit: this.props.purposeofvisit,
-                flightdetails: this.props.flightdetails,
-                hoteldetails: this.props.hoteldetails,
-                localtransportdetails: this.props.localtransportdetails,
-                visa: this.props.visa,
-                review: this.state.review,
-                status: this.props.status.name
-            });
-            this.props.goToPage(SECTION_OUTCOME_REJECT);
-        }
-
-        complete(userId) {
-            this.props.completeWizard(userId, {
-                id: this.props.wizardid,
-                createdBy: this.props.createdBy,
-                traveltype: this.props.traveltype,
-                clientinfo: this.props.clientinfo,
-                purposeofvisit: this.props.purposeofvisit,
-                flightdetails: this.props.flightdetails,
-                hoteldetails: this.props.hoteldetails,
-                localtransportdetails: this.props.localtransportdetails,
-                visa: this.props.visa,
-                review: this.state.review,
-                status: this.props.status.name
-            });
-            this.props.goToPage(SECTION_OUTCOME_COMPLETE);
-        }
-
-        saveForLater() {
-            this.props.saveWizard(this.props.loggedInUserId, {
-                id: this.props.wizardid,
-                createdBy: this.props.createdBy,
-                traveltype: this.props.traveltype,
-                clientinfo: this.props.clientinfo,
-                purposeofvisit: this.props.purposeofvisit,
-                flightdetails: this.props.flightdetails,
-                hoteldetails: this.props.hoteldetails,
-                localtransportdetails: this.props.localtransportdetails,
-                visa: this.props.visa,
-                review: this.state.review,
-                status: this.props.status.name
-            });
-            this.props.goToPage(SECTION_OUTCOME_SAVE);
-        }
-
         validateMandatoryFields(...fields) {
             let errorfields = [];
             fields.map(field => {
@@ -178,7 +89,6 @@ const withWizard = (WrappedComponent, dataref) => {
             return errorfields;
         }
 
-
         render() {
             return (
                 <WrappedComponent
@@ -188,11 +98,6 @@ const withWizard = (WrappedComponent, dataref) => {
                     firstPage={this.firstPage.bind(this)}
                     nextPage={this.nextPage.bind(this)}
                     previousPage={this.previousPage.bind(this)}
-                    saveForLater={this.saveForLater.bind(this)}
-                    submit={this.submit.bind(this)}
-                    approve={this.approve.bind(this)}
-                    reject={this.reject.bind(this)}
-                    complete={this.complete.bind(this)}
                     validateMandatoryFields={this.validateMandatoryFields.bind(this)}
                     {...this.props} {...this.state} />
             );
@@ -202,19 +107,12 @@ const withWizard = (WrappedComponent, dataref) => {
     const mapStateToProps = state => ({
         wizardid: state.wizard.wizardid,
         currentpage: state.wizard.currentpage,
-        traveltype:  state.wizard.traveltype,
-        clientinfo:  state.wizard.clientinfo,
-        purposeofvisit:  state.wizard.purposeofvisit,
-        flightdetails:  state.wizard.flightdetails,
-        visa: state.wizard.visa,
-        hoteldetails: state.wizard.hoteldetails,
-        localtransportdetails: state.wizard.localtransportdetails,
-        createdBy: state.wizard.createdBy,
-        review: state.wizard.review,
-        status: state.wizard.status
+        profile: state.wizard.profile,
+        geography: state.wizard.geography,
+        domain: state.wizard.domain
     })
 
-    return connect(mapStateToProps, { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard, submitWizard, approveWizard, rejectWizard, saveWizard, completeWizard })(Wrapper);
+    return connect(mapStateToProps, { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard })(Wrapper);
 }
 
 

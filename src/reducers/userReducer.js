@@ -16,13 +16,11 @@ export default function(state = initialState, action) {
     switch(action.type) {
         case FETCH_LOGGED_USER:
             console.log("reducer FETCH_LOGGED_USER");
-            console.log(state);
             return {
                 ...state
             }
         case RELOAD_LOGGED_USER:
             console.log("reducer RELOAD_LOGGED_USER");
-            console.log(action.payload);
             return {
                 ...state,
                 loggedUser: action.payload

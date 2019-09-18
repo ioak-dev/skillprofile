@@ -91,7 +91,7 @@ class Navigation extends React.Component {
 
       const LINK_HOME = <ArcButtonNavWrapper size="small" getMenuItemColor={this.getMenuItemColor.bind(this)} pathname="/home" label="Home" />;
       const LINK_CREATE_REQUEST = <ArcButtonNavWrapper size="small" getMenuItemColor={this.getMenuItemColor.bind(this)} pathname="/createrequest" label="Update Profile" />;
-      const LINK_USER_ADMINISTRATION = <ArcButtonNavWrapper size="small" getMenuItemColor={this.getMenuItemColor.bind(this)} pathname="/useradministration" label="User Administration" />;
+      // const LINK_USER_ADMINISTRATION = <ArcButtonNavWrapper size="small" getMenuItemColor={this.getMenuItemColor.bind(this)} pathname="/useradministration" label="User Administration" />;
       
         
       const sideList = (
