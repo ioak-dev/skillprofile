@@ -12,7 +12,6 @@ export const reloadWizard = (loggedInUserId) => dispatch => {
         dispatch({
             type: UPDATE_WIZARD,
             payload: {
-                currentpage: currentpage,
                 profile: [response]
             }
         })
@@ -22,7 +21,6 @@ export const reloadWizard = (loggedInUserId) => dispatch => {
         dispatch({
             type: UPDATE_WIZARD,
             payload: {
-                currentpage: currentpage,
                 ...response
             }
         })

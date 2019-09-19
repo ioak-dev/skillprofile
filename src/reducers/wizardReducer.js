@@ -31,10 +31,6 @@ export default function(state = initialState, action) {
             }
             case UPDATE_WIZARD:
                 console.log("reducer UPDATE_WIZARD");
-                if (action.payload.currentpage) {
-                    currentpage = action.payload.currentpage;
-                }
-                console.log(action.payload);
                 return {
                     ...state,
                     ...action.payload
