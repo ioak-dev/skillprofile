@@ -12,11 +12,17 @@ import Profile from './profile.jsx';
 class Wizard extends React.Component {
 
     componentDidMount() {
-        this.props.reloadWizard();
         this.props.fetchWizard();
 
         if (!this.props.id) {
             this.props.goToPage(SECTION_FIRST);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.loggedUser) {
+            console.log(nextProps.loggedUser);
+            this.props.reloadWizard(nextProps.loggedUser.id);
         }
     }
 

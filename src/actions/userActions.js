@@ -19,7 +19,7 @@ export const reloadLoggedUser = (email) => dispatch => {
                 type: RELOAD_LOGGED_USER,
                 payload: {
                     email: user.data.email,
-                    displayname: user.data.name,
+                    displayname: user.data.displayname,
                     id: user.data.id,
                     loggedin: true
                 }

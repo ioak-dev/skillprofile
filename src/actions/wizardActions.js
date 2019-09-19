@@ -5,24 +5,25 @@ import {
     UPDATE_WIZARD
 } from './types';
 
-import { SECTION_02, SECTION_REVIEW } from '../components/wizard/section-types'
-
-export const reloadWizard = (id, loggedInUserId) => dispatch => {
+export const reloadWizard = (loggedInUserId) => dispatch => {
     console.log('fetching HTTP');
-    axios.get('http://localhost:8080/user/' + loggedInUserId + '/profile')
+    axios.get('http://localhost:8080/user/' + loggedInUserId + '/profilebasic')
     .then((response) => {
-        const wizard = response.data;
-        let currentpage = SECTION_REVIEW;
-
-        if (loggedInUserId === wizard.createdBy && wizard.status.name === 'DRAFT') {
-            currentpage = SECTION_02;
-        }
-
         dispatch({
             type: UPDATE_WIZARD,
             payload: {
-                currentpage: currentpage
-
+                currentpage: currentpage,
+                profile: [response]
+            }
+        })
+    });
+    axios.get('http://localhost:8080/user/' + loggedInUserId + '/profileadvanced')
+    .then((response) => {
+        dispatch({
+            type: UPDATE_WIZARD,
+            payload: {
+                currentpage: currentpage,
+                ...response
             }
         })
     });
