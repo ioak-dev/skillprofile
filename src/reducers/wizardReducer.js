@@ -8,9 +8,25 @@ const initialState = {
     currentpage: 2,
     profile: [
         {
-            firstName: '',
-            lastName: ''
-        }
+            name: 'Shashank',
+            empId: '700',
+            designation:'Senior Consultant',
+            primaryTech: 'FrontEnd',
+            primarySkill: 'JavaScript',
+            billability: true,
+            careerStartDate: '',
+            joiningDate: '',
+            carrerGapYears: 1,
+            carrerGapMonths: 0,
+            totalExpYears: 6,
+            totalExpMonths: 0,
+            functionalExpYears: 0,
+            functionalExpMonths: 0,
+            previousWesternacherExpYears: 0,
+            previousWesternacherExpMonths: 0,
+            totalWesternacherExpYears: 1,
+            totalWesternacherExpMonths: 8
+        },
     ],
     geography: [
     ],
@@ -28,7 +44,6 @@ export default function(state = initialState, action) {
             }
             case UPDATE_WIZARD:
                 console.log("reducer UPDATE_WIZARD");
-                console.log(action.payload);
                 return {
                     ...state,
                     ...action.payload
