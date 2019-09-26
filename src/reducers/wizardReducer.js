@@ -15,7 +15,7 @@ const initialState = {
             primaryTech: '',
             primarySkill: '',
             billability: true,
-            careerStartDate: '',
+            careerStartDate: '23-09-2013',
             joiningDate: '',
             carrerGapYears: 0,
             carrerGapMonths: 0,
