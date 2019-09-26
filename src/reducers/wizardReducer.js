@@ -3,6 +3,7 @@ import {
     FETCH_WIZARD,
     UPDATE_WIZARD,
 } from '../actions/types';
+import moment from 'moment';
 
 const initialState = {
     currentpage: 2,
@@ -15,7 +16,7 @@ const initialState = {
             primaryTech: '',
             primarySkill: '',
             billability: true,
-            careerStartDate: '23-09-2013',
+            careerStartDate: moment().toDate(),
             joiningDate: '',
             carrerGapYears: 0,
             carrerGapMonths: 0,

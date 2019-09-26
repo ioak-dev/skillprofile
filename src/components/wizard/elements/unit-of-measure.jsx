@@ -5,6 +5,7 @@ import { Typography, Grid, TextField } from '@material-ui/core';
 function UnitOfMeasure(props) {
     return (
         <Grid container direction="row" justify="center" alignItems="center" spacing={8}>
+            <Grid item xs={4}></Grid>
             <Grid item xs={2}>
                 <TextField
                 label='years'
@@ -31,7 +32,7 @@ function UnitOfMeasure(props) {
                 // error={error}
                 />
             </Grid>    
-            <Grid item xs={8}>
+            <Grid item xs={4}>
                 <Typography variant="body1">{props.item['topic']}</Typography>
             </Grid>
         </Grid>

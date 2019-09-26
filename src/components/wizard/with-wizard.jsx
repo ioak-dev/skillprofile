@@ -33,14 +33,12 @@ const withWizard = (WrappedComponent, dataref, category) => {
             // this.submit = this.submit.bind(this);
         }
 
-
-        handledatechange(event, fieldname) {
+        handledatechange(event, fieldname, index) {
+            const node = this.state[dataref];
+            node[index][fieldname] = moment(event).toDate();
             this.setState(
                 {
-                    [dataref]: {
-                        ...this.state[dataref],
-                        [fieldname]: moment(event).toDate()
-                    }
+                    [dataref]: node
                 }
             );
         }

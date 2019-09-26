@@ -115,9 +115,12 @@ const Profile = (props) =>
                                     <DatePicker
                                         label='Career Starting Date'
                                         name='careerStartDate'
-                                        onChange={e => props.handledatechange(e, index)}
+                                        value={props[componentName][index].careerStartDate}
+                                        onChange={e => props.handledatechange(e, 'careerStartDate', index)}
                                         margin="normal"
                                         variant="standard"
+                                        format="YYYY/MM/DD"
+                                        animateYearScrolling
                                         fullWidth
                                     />
                                 </div>
@@ -128,12 +131,14 @@ const Profile = (props) =>
                             <MuiPickersUtilsProvider utils={MomentUtils}>
                                 <div className="picker">
                                     <DatePicker
-                                        label='Date Of Joining'
+                                        label='Date of joining'
                                         name='joiningDate'
-                                        selected={props[componentName][index].joiningDate}
-                                        onChange={e => props.handledatechange(e, index)}
+                                        value={props[componentName][index].joiningDate}
+                                        onChange={e => props.handledatechange(e, 'joiningDate', index)}
                                         margin="normal"
                                         variant="standard"
+                                        format="YYYY/MM/DD"
+                                        animateYearScrolling
                                         fullWidth
                                     />
                                 </div>
@@ -147,7 +152,6 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
@@ -159,7 +163,6 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
@@ -171,7 +174,6 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
@@ -179,11 +181,11 @@ const Profile = (props) =>
                             <TextField
                                 label='Total Experience Months'
                                 name='totalExpMonths'
+                                type='number'
                                 value={props[componentName][index].totalExpMonths}
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
@@ -195,7 +197,6 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
@@ -207,7 +208,6 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
@@ -219,7 +219,6 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
@@ -231,7 +230,6 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
@@ -243,7 +241,6 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
@@ -255,7 +252,6 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
-                                fullWidth
                                 // error={error}
                             />
                         </Grid>
