@@ -14,7 +14,7 @@ const initialState = {
             primaryTech: 'FrontEnd',
             primarySkill: 'JavaScript',
             billability: true,
-            careerStartDate: '',
+            careerStartDate: '23-09-2013',
             joiningDate: '',
             carrerGapYears: 1,
             carrerGapMonths: 0,

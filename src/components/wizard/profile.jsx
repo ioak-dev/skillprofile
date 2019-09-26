@@ -101,8 +101,7 @@ const Profile = (props) =>
                                     <DatePicker
                                         label='Career Starting Date'
                                         name='careerStartDate'
-                                        value={props[componentName][index].careerStartDate}
-                                        onChange={e => props.handlechange(e, index)}
+                                        onChange={e => props.handledatechange(e, index)}
                                         margin="normal"
                                         variant="standard"
                                         fullWidth
@@ -117,8 +116,8 @@ const Profile = (props) =>
                                     <DatePicker
                                         label='Date Of Joining'
                                         name='joiningDate'
-                                        value={props[componentName][index].joiningDate}
-                                        onChange={e => props.handlechange(e, index)}
+                                        selected={props[componentName][index].joiningDate}
+                                        onChange={e => props.handledatechange(e, index)}
                                         margin="normal"
                                         variant="standard"
                                         fullWidth
