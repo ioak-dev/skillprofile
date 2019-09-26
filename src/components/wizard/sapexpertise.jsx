@@ -6,9 +6,9 @@ import WizardFlow from './wizard-flow';
 import withWizard from './with-wizard';
 import UnitOfMeasure from './elements/unit-of-measure';
 
-const componentName = "geography";
+const componentName = "IT & SAP Expertise";
 
-const Geography = (props) =>
+const Sapexpertise = (props) =>
     <div className="arc-root">
         <form noValidate autoComplete="off">
             <Grid container direction="row" justify="center" alignItems="center"  spacing={8}>
@@ -51,10 +51,8 @@ function validate(props) {
     return errorfields;
 }
 
-
-
-Geography.protoTypes = {
-    geography: PropTypes.object
+Sapexpertise.protoTypes = {
+    "IT & SAP Expertise": PropTypes.object
 }
 
-export default withWizard(Geography, componentName)
+export default withWizard(Sapexpertise, componentName)

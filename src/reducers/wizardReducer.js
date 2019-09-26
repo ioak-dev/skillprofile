@@ -7,17 +7,14 @@ import {
 const initialState = {
     currentpage: 2,
     profile: [
-        {name: 'Shashank'}
+        {
+            firstName: '',
+            lastName: ''
+        }
     ],
     geography: [
-        {topic: 'India', years: 1, months: 6},
-        {topic: 'USA', years: 3, months: 0},
-        {topic: 'France', years: 0, months: 3},
-        {topic: 'DE', years: 0, months: 3}
     ],
-    domain: [
-        {topic: 'Logistics', years: 2, months: 2},
-        {topic: 'Finance', years: 1, months: 4}
+    "IT & SAP Expertise": [
     ]
 }
 
@@ -31,6 +28,7 @@ export default function(state = initialState, action) {
             }
             case UPDATE_WIZARD:
                 console.log("reducer UPDATE_WIZARD");
+                console.log(action.payload);
                 return {
                     ...state,
                     ...action.payload

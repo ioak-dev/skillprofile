@@ -1,18 +1,24 @@
 import React from 'react'
 import Geography from './geography.jsx';
-import Domain from './domain.jsx';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchWizard, reloadWizard, goToPage } from '../../actions/wizardActions';
+import { fetchLoggedUser, reloadLoggedUser } from '../../actions/userActions';
 import { Grid, Hidden } from '@material-ui/core';
 
 import { SECTION_FIRST, SECTION_02, SECTION_03, SECTION_04 } from '../wizard/section-types';
 import Profile from './profile.jsx';
+import Sapexpertise from './sapexpertise.jsx';
+import Overallexperience from './overallexperience.jsx';
 
 class Wizard extends React.Component {
 
     componentDidMount() {
+        this.props.fetchLoggedUser(sessionStorage.getItem('userSigninName'));
         this.props.fetchWizard();
+        this.setState({
+            wizardLoaded: false
+        })
 
         if (!this.props.id) {
             this.props.goToPage(SECTION_FIRST);
@@ -20,9 +26,11 @@ class Wizard extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.loggedUser) {
-            console.log(nextProps.loggedUser);
+        if (nextProps.loggedUser && nextProps.loggedUser.id && !this.state.wizardLoaded) {
             this.props.reloadWizard(nextProps.loggedUser.id);
+            this.setState({
+                wizardLoaded: true
+            })
         }
     }
 
@@ -31,7 +39,8 @@ class Wizard extends React.Component {
             <div>
                 {this.props.currentpage === SECTION_FIRST && <Profile loggedInUserId={this.props.loggedUser.id} />}
                 {this.props.currentpage === SECTION_02 && <Geography loggedInUserId={this.props.loggedUser.id} />}
-                {this.props.currentpage === SECTION_03 && <Domain loggedInUserId={this.props.loggedUser.id} />}
+                {this.props.currentpage === SECTION_03 && <Sapexpertise loggedInUserId={this.props.loggedUser.id} />}
+                {this.props.currentpage === SECTION_04 && <Overallexperience loggedInUserId={this.props.loggedUser.id} />}
             </div>;
 
         return (
@@ -59,6 +68,8 @@ Wizard.protoTypes = {
     id: PropTypes.string,
     fetchWizard: PropTypes.func.isRequired,
     reloadWizard: PropTypes.func.isRequired,
+    fetchLoggedUser: PropTypes.func.isRequired,
+    reloadLoggedUser: PropTypes.func.isRequired,
     goToPage: PropTypes.func.isRequired,
     currentpage: PropTypes.number,
     status: PropTypes.string,
@@ -69,4 +80,4 @@ const mapStateToProps = state => ({
     loggedUser: state.user.loggedUser
 })
 
-export default connect( mapStateToProps, { fetchWizard, reloadWizard, goToPage } )(Wizard)
+export default connect( mapStateToProps, { fetchWizard, reloadWizard, goToPage, fetchLoggedUser, reloadLoggedUser } )(Wizard)
