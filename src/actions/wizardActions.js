@@ -7,21 +7,21 @@ import {
 
 export const reloadWizard = (loggedInUserId) => dispatch => {
     console.log('fetching HTTP');
-    axios.get('http://localhost:8080/user/' + loggedInUserId + '/profilebasic')
+    axios.get('http://localhost:8080/user/' + loggedInUserId + '/profileBasic')
     .then((response) => {
         dispatch({
             type: UPDATE_WIZARD,
             payload: {
-                profile: [response]
+                profile: [response.data]
             }
         })
     });
-    axios.get('http://localhost:8080/user/' + loggedInUserId + '/profileadvanced')
+    axios.get('http://localhost:8080/user/' + loggedInUserId + '/profileAdvanced')
     .then((response) => {
         dispatch({
             type: UPDATE_WIZARD,
             payload: {
-                ...response
+                ...response.data.data
             }
         })
     });
@@ -71,7 +71,7 @@ export const updateWizard = (section, data) => dispatch => {
 }
 
 export const saveWizard = (userId, data) => dispatch => {
-    axios.put('http://localhost:8080/wizard/' + userId, data, null)
+    axios.put('http://localhost:8080/wizard/' + userId, {data: data}, null)
         .then((response) => {
             const wizard = response.data;
             dispatch({

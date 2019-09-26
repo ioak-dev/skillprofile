@@ -22,10 +22,24 @@ const Profile = (props) =>
                     <Grid container key={index}>
                         <Grid item xs={12}>
                             <TextField
-                            label='Full Name'
-                            name='name'
+                            label='First Name'
+                            name='firstName'
+                            // disabled
+                            value={props[componentName][index].firstName}
+                            onChange={e => props.handlechange(e, index)}
+                            margin="normal"
+                            variant="standard"
+                            fullWidth
+                            // error={error}
+                            />
+                        </Grid>
+                        
+                        <Grid item xs={12}>
+                            <TextField
+                            label='Last Name'
+                            name="lastName"
                             disabled
-                            value={props[componentName][index].name}
+                            value={props[componentName][index].lastName}
                             onChange={e => props.handlechange(e, index)}
                             margin="normal"
                             variant="standard"

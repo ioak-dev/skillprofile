@@ -6,14 +6,14 @@ import WizardFlow from './wizard-flow';
 import withWizard from './with-wizard';
 import UnitOfMeasure from './elements/unit-of-measure';
 
-const componentName = "geography";
+const componentName = "Split up of Overall Experience";
 
-const Geography = (props) =>
+const Overallexperience = (props) =>
     <div className="arc-root">
         <form noValidate autoComplete="off">
             <Grid container direction="row" justify="center" alignItems="center"  spacing={8}>
                 <Grid item xs={12}>
-                    <WizardFlow headline={componentName} previouspage={previousPage.bind(this, props)} nextpage={nextPage.bind(this, props)} />
+                    <WizardFlow headline={componentName} previouspage={previousPage.bind(this, props)} submit={nextPage.bind(this,props)} />
                 </Grid>
 
                 <ErrorMessage errors={props.errormessages} />
@@ -34,7 +34,7 @@ function previousPage(props) {
 
 function nextPage(props) {
     if (validate(props).length === 0) {
-        props.nextPage(1);
+        alert('save to database not integrated');
     }
 }
 
@@ -51,10 +51,8 @@ function validate(props) {
     return errorfields;
 }
 
-
-
-Geography.protoTypes = {
-    geography: PropTypes.object
+Overallexperience.protoTypes = {
+    "Split up of Overall Experience": PropTypes.object
 }
 
-export default withWizard(Geography, componentName)
+export default withWizard(Overallexperience, componentName)

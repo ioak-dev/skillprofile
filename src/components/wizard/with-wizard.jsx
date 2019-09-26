@@ -109,7 +109,8 @@ const withWizard = (WrappedComponent, dataref, category) => {
         currentpage: state.wizard.currentpage,
         profile: state.wizard.profile,
         geography: state.wizard.geography,
-        domain: state.wizard.domain
+        "IT & SAP Expertise": state.wizard["IT & SAP Expertise"],
+        "Split up of Overall Experience": state.wizard["Split up of Overall Experience"]
     })
 
     return connect(mapStateToProps, { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard })(Wrapper);

@@ -29,14 +29,8 @@ const initialState = {
         },
     ],
     geography: [
-        {topic: 'India', years: 1, months: 6},
-        {topic: 'USA', years: 3, months: 0},
-        {topic: 'France', years: 0, months: 3},
-        {topic: 'DE', years: 0, months: 3}
     ],
-    domain: [
-        {topic: 'Logistics', years: 2, months: 2},
-        {topic: 'Finance', years: 1, months: 4}
+    "IT & SAP Expertise": [
     ]
 }
 

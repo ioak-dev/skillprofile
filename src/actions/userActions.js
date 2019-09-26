@@ -13,13 +13,13 @@ export const fetchLoggedUser = () => dispatch => {
 export const reloadLoggedUser = (email) => dispatch => {
     if (email) {
         console.log('fetching HTTP');
-        axios.get('http://localhost:8080/person/email/' + email)
+        axios.get('http://localhost:8080/user/email/' + email)
         .then((user) => {
             dispatch({
                 type: RELOAD_LOGGED_USER,
                 payload: {
                     email: user.data.email,
-                    displayname: user.data.displayname,
+                    displayname: user.data.fullName,
                     id: user.data.id,
                     loggedin: true
                 }
