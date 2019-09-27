@@ -6,14 +6,14 @@ import WizardFlow from './wizard-flow';
 import withWizard from './with-wizard';
 import UnitOfMeasure from './elements/unit-of-measure';
 
-const componentName = "Split up of Overall Experience";
+const componentName = "Industry Vertical - Domain Experience";
 
-const Overallexperience = (props) =>
+const IndustrialVertical = (props) =>
     <div className="arc-root">
         <form noValidate autoComplete="off">
             <Grid container direction="row" justify="center" alignItems="center"  spacing={8}>
                 <Grid item xs={12}>
-                    <WizardFlow headline={componentName} previouspage={previousPage.bind(this, props)} nextpage={nextPage.bind(this,props)} />
+                    <WizardFlow headline={componentName} previouspage={previousPage.bind(this, props)} nextpage={nextPage.bind(this, props)} />
                 </Grid>
 
                 <ErrorMessage errors={props.errormessages} />
@@ -34,13 +34,14 @@ function previousPage(props) {
 
 function nextPage(props) {
     if (props.validate().length === 0) {
-        props.nextPage(1);
+        props.submit(props.loggedInUserId);
     }
-    console.log(props.errormessages);
 }
 
-Overallexperience.protoTypes = {
-    "Split up of Overall Experience": PropTypes.object
+
+
+IndustrialVertical.protoTypes = {
+    'Industry Vertical - Domain Experience': PropTypes.object
 }
 
-export default withWizard(Overallexperience, componentName)
+export default withWizard(IndustrialVertical, componentName)

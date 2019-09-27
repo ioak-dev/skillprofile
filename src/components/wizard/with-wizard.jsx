@@ -93,9 +93,9 @@ const withWizard = (WrappedComponent, dataref) => {
                 sectionTotal = +sectionTotal + +item.months;
             });
 
-            if (totalExperience - sectionTotal > 3) {
+            if (+totalExperience - +sectionTotal > 3) {
                 errormessages.push('Section total (' + sectionTotal + ' months) does not match your total experience (' + totalExperience + ' months)');
-            } else if (totalExperience - sectionTotal < 3) {
+            } else if (+totalExperience - +sectionTotal < 3) {
                 errormessages.push('Section total (' + sectionTotal + ' months) cannot be higher than your total experience (' + totalExperience + ' months)');
             }
             this.setState({
@@ -126,7 +126,8 @@ const withWizard = (WrappedComponent, dataref) => {
         profile: state.wizard.profile,
         'Geography worked for - Customer served': state.wizard['Geography worked for - Customer served'],
         'IT & SAP Expertise': state.wizard['IT & SAP Expertise'],
-        'Split up of Overall Experience': state.wizard['Split up of Overall Experience']
+        'Split up of Overall Experience': state.wizard['Split up of Overall Experience'],
+        'Industry Vertical - Domain Experience': state.wizard['Industry Vertical - Domain Experience']
     })
 
     return connect(mapStateToProps, { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard, saveWizard })(Wrapper);
