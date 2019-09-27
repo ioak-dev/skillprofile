@@ -24,7 +24,7 @@ const Profile = (props) =>
                             <TextField
                             label='First Name'
                             name='firstName'
-                            // disabled
+                            disabled
                             value={props[componentName][index].firstName}
                             onChange={e => props.handlechange(e, index)}
                             margin="normal"
