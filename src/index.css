@@ -13,6 +13,10 @@ code {
     monospace;
 }
 
+.unitofmeasure {
+  width: 70%;
+}
+
 /* Custom theme */
 .arc-root {
   flex-grow: 1;

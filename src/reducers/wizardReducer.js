@@ -29,10 +29,6 @@ const initialState = {
             totalWesternacherExpYears: 0,
             totalWesternacherExpMonths: 0
         },
-    ],
-    geography: [
-    ],
-    "IT & SAP Expertise": [
     ]
 }
 

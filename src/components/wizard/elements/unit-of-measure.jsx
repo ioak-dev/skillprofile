@@ -6,33 +6,37 @@ function UnitOfMeasure(props) {
     return (
         <Grid container direction="row" justify="center" alignItems="center" spacing={8}>
             <Grid item xs={4}></Grid>
-            <Grid item xs={2}>
-                <TextField
-                label='years'
-                name='years'
-                value={props.item['years']}
-                type="number"
-                onChange={e => props.handlechange(e, props.index)}
-                margin="normal"
-                variant="standard"
-                fullWidth
-                // error={error}
-                />
+            <Grid item xs={1}>
+                <div className="unitofmeasure">
+                    <TextField
+                    label='years'
+                    name='years'
+                    value={props.item['years']}
+                    type="number"
+                    onChange={e => props.handlechange(e, props.index)}
+                    margin="normal"
+                    variant="standard"
+                    fullWidth
+                    // error={error}
+                    />
+                </div>
             </Grid>
-            <Grid item xs={2}>
-                <TextField
-                label='months'
-                name='months'
-                value={props.item['months']}
-                type="number"
-                onChange={e => props.handlechange(e, props.index)}
-                margin="normal"
-                variant="standard"
-                fullWidth
-                // error={error}
-                />
+            <Grid item xs={1}>
+                <div className="unitofmeasure">
+                    <TextField
+                    label='months'
+                    name='months'
+                    value={props.item['months']}
+                    type="number"
+                    onChange={e => props.handlechange(e, props.index)}
+                    margin="normal"
+                    variant="standard"
+                    fullWidth
+                    // error={error}
+                    />
+                </div>
             </Grid>    
-            <Grid item xs={4}>
+            <Grid item xs={6}>
                 <Typography variant="body1">{props.item['topic']}</Typography>
             </Grid>
         </Grid>

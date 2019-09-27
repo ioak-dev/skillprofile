@@ -6,7 +6,7 @@ import WizardFlow from './wizard-flow';
 import withWizard from './with-wizard';
 import UnitOfMeasure from './elements/unit-of-measure';
 
-const componentName = "geography";
+const componentName = "Geography worked for - Customer served";
 
 const Geography = (props) =>
     <div className="arc-root">

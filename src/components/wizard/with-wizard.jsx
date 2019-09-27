@@ -1,9 +1,9 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard } from '../../actions/wizardActions';
+import { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard, saveWizard } from '../../actions/wizardActions';
 import moment from 'moment';
 
-const withWizard = (WrappedComponent, dataref, category) => {
+const withWizard = (WrappedComponent, dataref) => {
     class Wrapper extends Component {
         componentDidMount() {
             this.props.fetchWizard();
@@ -63,9 +63,17 @@ const withWizard = (WrappedComponent, dataref, category) => {
         }
 
         nextPage(count) {
-            console.log(this.state[dataref]);
             this.props.updateWizard(dataref, this.state[dataref]);
             this.props.goToNextPage(this.props.currentpage, count);
+        }
+
+        submit(userId) {
+            this.props.updateWizard(dataref, this.state[dataref]);
+            this.props.saveWizard(userId, this.props.profile[0], {
+                'Geography worked for - Customer served': this.props['Geography worked for - Customer served'],
+                'IT & SAP Expertise': this.props['IT & SAP Expertise'],
+                'Split up of Overall Experience': this.props['Split up of Overall Experience']
+            });
         }
 
         firstPage() {
@@ -95,6 +103,7 @@ const withWizard = (WrappedComponent, dataref, category) => {
                     handledatechange={this.handledatechange.bind(this)}
                     firstPage={this.firstPage.bind(this)}
                     nextPage={this.nextPage.bind(this)}
+                    submit={this.submit.bind(this)}
                     previousPage={this.previousPage.bind(this)}
                     validateMandatoryFields={this.validateMandatoryFields.bind(this)}
                     {...this.props} {...this.state} />
@@ -106,12 +115,12 @@ const withWizard = (WrappedComponent, dataref, category) => {
         wizardid: state.wizard.wizardid,
         currentpage: state.wizard.currentpage,
         profile: state.wizard.profile,
-        geography: state.wizard.geography,
-        "IT & SAP Expertise": state.wizard["IT & SAP Expertise"],
-        "Split up of Overall Experience": state.wizard["Split up of Overall Experience"]
+        'Geography worked for - Customer served': state.wizard['Geography worked for - Customer served'],
+        'IT & SAP Expertise': state.wizard['IT & SAP Expertise'],
+        'Split up of Overall Experience': state.wizard['Split up of Overall Experience']
     })
 
-    return connect(mapStateToProps, { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard })(Wrapper);
+    return connect(mapStateToProps, { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard, saveWizard })(Wrapper);
 }
 
 

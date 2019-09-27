@@ -34,7 +34,8 @@ function previousPage(props) {
 
 function nextPage(props) {
     if (validate(props).length === 0) {
-        alert('save to database not integrated');
+        console.log(props);
+        props.submit(props.loggedInUserId);
     }
 }
 

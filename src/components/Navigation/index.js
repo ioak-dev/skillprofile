@@ -64,7 +64,7 @@ class Navigation extends React.Component {
     }
 
     componentWillUnmount() {
-    this.props.onUnload();
+      this.props.onUnload();
     }
 
     getMenuItemColor(path) {

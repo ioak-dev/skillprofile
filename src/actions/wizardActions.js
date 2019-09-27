@@ -70,34 +70,17 @@ export const updateWizard = (section, data) => dispatch => {
     })
 }
 
-export const saveWizard = (userId, data) => dispatch => {
-    axios.put('http://localhost:8080/wizard/' + userId, {data: data}, null)
+export const saveWizard = (userId, basicProfileData, advancedProfileData) => dispatch => {
+    console.log(userId);
+    console.log(advancedProfileData);
+    axios.put('http://localhost:8080/user/profileBasic', basicProfileData)
         .then((response) => {
-            const wizard = response.data;
-            dispatch({
-                type: UPDATE_WIZARD,
-                payload: {
-                    wizardid: wizard.id
-                }
-            })
+            console.log(response);
         })
-}
-
-export const submitWizard = (userId, data) => dispatch => {
-    axios.put('http://localhost:8080/wizard/' + userId, data, null)
+    
+    axios.put('http://localhost:8080/user/' + userId + '/profileAdvanced', {data: advancedProfileData})
         .then((response) => {
-
-            axios.post('http://localhost:8080/wizard/' + response.data.id + '/submit/' + userId)
-            .then((response) => {
-            
-                const wizard = response.data;
-                dispatch({
-                    type: UPDATE_WIZARD,
-                    payload: {
-                        wizardid: wizard.id
-                    }
-                })
-            })
+            console.log(response);
         })
 }
 
