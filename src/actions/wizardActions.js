@@ -71,8 +71,6 @@ export const updateWizard = (section, data) => dispatch => {
 }
 
 export const saveWizard = (userId, basicProfileData, advancedProfileData) => dispatch => {
-    console.log(userId);
-    console.log(advancedProfileData);
     axios.put('http://localhost:8080/user/profileBasic', basicProfileData)
         .then((response) => {
             console.log(response);

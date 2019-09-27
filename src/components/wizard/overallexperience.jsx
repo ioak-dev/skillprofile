@@ -34,7 +34,6 @@ function previousPage(props) {
 
 function nextPage(props) {
     if (props.validate().length === 0) {
-        console.log(props);
         props.submit(props.loggedInUserId);
     }
 }

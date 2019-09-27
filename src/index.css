@@ -14,7 +14,11 @@ code {
 }
 
 .unitofmeasure {
-  width: 70%;
+  width: 80%;
+}
+
+.errormessage {
+  color: red !important;
 }
 
 /* Custom theme */

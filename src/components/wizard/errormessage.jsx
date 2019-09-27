@@ -7,7 +7,7 @@ class ErrorMessage extends React.Component {
     return (
       <Grid container direction="row" justify="center" spacing={8}>
         <Grid container item justify="flex-end" xs={12}>
-          <Typography variant="caption">
+          <Typography className="errormessage" variant="caption">
             {this.props.errors.map(item=><div key={item}>* {item}</div>)}
           </Typography>
         </Grid>

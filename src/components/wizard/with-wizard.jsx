@@ -72,6 +72,7 @@ const withWizard = (WrappedComponent, dataref) => {
                 'IT & SAP Expertise': this.props['IT & SAP Expertise'],
                 'Split up of Overall Experience': this.props['Split up of Overall Experience']
             });
+            this.props.goToNextPage(this.props.currentpage, 1);
         }
 
         firstPage() {
@@ -84,14 +85,23 @@ const withWizard = (WrappedComponent, dataref) => {
         }
 
         validate() {
-            this.errormessages = [];
-            // alert(this.props.profile.totalExpYears);
-            // alert(this.props.profile.totalExpMonths);
-            // console.log(this.props.profile);
-            // const totalExperience = (this.props.profile.totalExpYears * 12) + this.props.profile.totalExpMonths;
-            // console.log(totalExperience);
-            // console.log(this.state[dataref]);
-            return this.errormessages;
+            let errormessages = [];
+            const totalExperience = (this.props.profile[0].totalExpYears * 12) + this.props.profile[0].totalExpMonths;
+            let sectionTotal = 0;
+            this.state[dataref].map(item => {
+                sectionTotal = +sectionTotal + (+item.years * 12);
+                sectionTotal = +sectionTotal + +item.months;
+            });
+
+            if (totalExperience - sectionTotal > 3) {
+                errormessages.push('Section total (' + sectionTotal + ' months) does not match your total experience (' + totalExperience + ' months)');
+            } else if (totalExperience - sectionTotal < 3) {
+                errormessages.push('Section total (' + sectionTotal + ' months) cannot be higher than your total experience (' + totalExperience + ' months)');
+            }
+            this.setState({
+                errormessages: errormessages
+            });
+            return errormessages;
         }
 
         render() {

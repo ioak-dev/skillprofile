@@ -6,10 +6,11 @@ import { fetchWizard, reloadWizard, goToPage } from '../../actions/wizardActions
 import { fetchLoggedUser, reloadLoggedUser } from '../../actions/userActions';
 import { Grid, Hidden } from '@material-ui/core';
 
-import { SECTION_FIRST, SECTION_02, SECTION_03, SECTION_04 } from '../wizard/section-types';
+import { SECTION_FIRST, SECTION_02, SECTION_03, SECTION_04, SECTION_OUTCOME_SAVE } from '../wizard/section-types';
 import Profile from './profile.jsx';
 import Sapexpertise from './sapexpertise.jsx';
 import Overallexperience from './overallexperience.jsx';
+import Outcomesave from './outcomesave.jsx';
 
 class Wizard extends React.Component {
 
@@ -41,6 +42,7 @@ class Wizard extends React.Component {
                 {this.props.currentpage === SECTION_02 && <Geography loggedInUserId={this.props.loggedUser.id} />}
                 {this.props.currentpage === SECTION_03 && <Sapexpertise loggedInUserId={this.props.loggedUser.id} />}
                 {this.props.currentpage === SECTION_04 && <Overallexperience loggedInUserId={this.props.loggedUser.id} />}
+                {this.props.currentpage === SECTION_OUTCOME_SAVE && <Outcomesave loggedInUserId={this.props.loggedUser.id} />}
             </div>;
 
         return (

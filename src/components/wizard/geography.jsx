@@ -36,6 +36,7 @@ function nextPage(props) {
     if (props.validate().length === 0) {
         props.nextPage(1);
     }
+    console.log(props.errormessages);
 }
 
 
