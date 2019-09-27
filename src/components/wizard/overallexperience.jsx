@@ -33,23 +33,10 @@ function previousPage(props) {
 }
 
 function nextPage(props) {
-    if (validate(props).length === 0) {
+    if (props.validate().length === 0) {
         console.log(props);
         props.submit(props.loggedInUserId);
     }
-}
-
-function validate(props) {
-    const errorfields = props.validateMandatoryFields();
-    const errormessages = [];
-
-    if (errorfields.length > 0) {
-        errormessages.push("Mandatory fields missing");
-    }
-
-    props.reportErrors(errorfields, errormessages);
-
-    return errorfields;
 }
 
 Overallexperience.protoTypes = {

@@ -23,7 +23,6 @@ const withWizard = (WrappedComponent, dataref) => {
             super(props);
 
             this.state = {
-                errorfields: [],
                 errormessages: [],
                 [dataref]: this.props[dataref]
             };
@@ -55,9 +54,8 @@ const withWizard = (WrappedComponent, dataref) => {
             return 'UPDATE_' + dataref.toUpperCase();
         }
 
-        reportErrors(errorfields, errormessages) {
+        reportErrors(errormessages) {
             this.setState({
-                errorfields: errorfields,
                 errormessages: errormessages
             })
         }
@@ -85,14 +83,15 @@ const withWizard = (WrappedComponent, dataref) => {
             this.props.goToPreviousPage(this.props.currentpage, count);
         }
 
-        validateMandatoryFields(...fields) {
-            let errorfields = [];
-            fields.map(field => {
-                if (!this.state[dataref][field] || this.state[dataref][field] === '') {
-                    errorfields.push(field);
-                }
-            })
-            return errorfields;
+        validate() {
+            this.errormessages = [];
+            // alert(this.props.profile.totalExpYears);
+            // alert(this.props.profile.totalExpMonths);
+            // console.log(this.props.profile);
+            // const totalExperience = (this.props.profile.totalExpYears * 12) + this.props.profile.totalExpMonths;
+            // console.log(totalExperience);
+            // console.log(this.state[dataref]);
+            return this.errormessages;
         }
 
         render() {
@@ -105,7 +104,7 @@ const withWizard = (WrappedComponent, dataref) => {
                     nextPage={this.nextPage.bind(this)}
                     submit={this.submit.bind(this)}
                     previousPage={this.previousPage.bind(this)}
-                    validateMandatoryFields={this.validateMandatoryFields.bind(this)}
+                    validate={this.validate.bind(this)}
                     {...this.props} {...this.state} />
             );
         }

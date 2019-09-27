@@ -21,7 +21,7 @@ const ClientInfo = (props) =>
                 <ErrorMessage errors={props.errormessages} />
 
                 <br />
-                <UnitOfMeasure category="Geography" topic="EMEA" errorfields = {props.errorfields} />
+                <UnitOfMeasure category="Geography" topic="EMEA" />
                 <Grid item xs={4}>
                     <Typography variant="body1">SAP EWM</Typography>
                 </Grid>
@@ -64,15 +64,6 @@ function nextPage(props) {
 }
 
 function validate(props) {
-    const errorfields = props.validateMandatoryFields('name','country','city');
-    const errormessages = [];
-
-    if (errorfields.length > 0) {
-        errormessages.push("Mandatory fields missing");
-    }
-
-    props.reportErrors(errorfields, errormessages);
-
     return errorfields;
 }
 

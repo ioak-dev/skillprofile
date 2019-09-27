@@ -33,22 +33,9 @@ function previousPage(props) {
 }
 
 function nextPage(props) {
-    if (validate(props).length === 0) {
+    if (props.validate().length === 0) {
         props.nextPage(1);
     }
-}
-
-function validate(props) {
-    const errorfields = props.validateMandatoryFields();
-    const errormessages = [];
-
-    if (errorfields.length > 0) {
-        errormessages.push("Mandatory fields missing");
-    }
-
-    props.reportErrors(errorfields, errormessages);
-
-    return errorfields;
 }
 
 
