@@ -70,7 +70,9 @@ const withWizard = (WrappedComponent, dataref) => {
             this.props.saveWizard(userId, this.props.profile[0], {
                 'Geography worked for - Customer served': this.props['Geography worked for - Customer served'],
                 'IT & SAP Expertise': this.props['IT & SAP Expertise'],
-                'Split up of Overall Experience': this.props['Split up of Overall Experience']
+                'Split up of Overall Experience': this.props['Split up of Overall Experience'],
+                'Industry Vertical - Domain Experience': this.props['Industry Vertical - Domain Experience'],
+                'Geography worked from - onsite / offshore': this.props['Geography worked from - onsite / offshore']
             });
             this.props.goToNextPage(this.props.currentpage, 1);
         }
@@ -127,7 +129,9 @@ const withWizard = (WrappedComponent, dataref) => {
         'Geography worked for - Customer served': state.wizard['Geography worked for - Customer served'],
         'IT & SAP Expertise': state.wizard['IT & SAP Expertise'],
         'Split up of Overall Experience': state.wizard['Split up of Overall Experience'],
-        'Industry Vertical - Domain Experience': state.wizard['Industry Vertical - Domain Experience']
+        'Industry Vertical - Domain Experience': state.wizard['Industry Vertical - Domain Experience'],
+        'Geography worked from - onsite / offshore': state.wizard['Geography worked from - onsite / offshore']
+
     })
 
     return connect(mapStateToProps, { goToPage, goToFirstPage, goToPreviousPage, goToNextPage, fetchWizard, updateWizard, saveWizard })(Wrapper);

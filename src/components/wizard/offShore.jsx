@@ -6,9 +6,9 @@ import WizardFlow from "./wizard-flow";
 import withWizard from "./with-wizard";
 import UnitOfMeasure from "./elements/unit-of-measure";
 
-const componentName = "Industry Vertical - Domain Experience";
+const componentName = "Geography worked from - onsite / offshore";
 
-const IndustrialVertical = props => (
+const offshore = props => (
   <div className="arc-root">
     <form noValidate autoComplete="off">
       <Grid
@@ -49,13 +49,13 @@ function previousPage(props) {
 
 function nextPage(props) {
   if (props.validate().length === 0) {
-    // console.log(props);
-    props.nextPage(1);
+    props.submit(props.loggedInUserId);
   }
+  console.log(props.errormessages);
 }
 
-IndustrialVertical.protoTypes = {
-  "Industry Vertical - Domain Experience": PropTypes.object
+offshore.protoTypes = {
+    'Geography worked from - onsite / offshore': PropTypes.object
 };
 
-export default withWizard(IndustrialVertical, componentName);
+export default withWizard(offshore, componentName);

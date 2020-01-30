@@ -152,6 +152,7 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
+                                type='number'
                                 // error={error}
                             />
                         </Grid>
@@ -163,6 +164,7 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
+                                type='number'
                                 // error={error}
                             />
                         </Grid>
@@ -174,6 +176,7 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
+                                type='number'
                                 // error={error}
                             />
                         </Grid>
@@ -197,6 +200,7 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
+                                type='number'
                                 // error={error}
                             />
                         </Grid>
@@ -208,6 +212,7 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
+                                type='number'
                                 // error={error}
                             />
                         </Grid>
@@ -219,6 +224,7 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
+                                type='number'
                                 // error={error}
                             />
                         </Grid>
@@ -230,6 +236,7 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
+                                type='number'
                                 // error={error}
                             />
                         </Grid>
@@ -241,6 +248,7 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
+                                type='number'
                                 // error={error}
                             />
                         </Grid>
@@ -252,6 +260,7 @@ const Profile = (props) =>
                                 onChange={e => props.handlechange(e, index)}
                                 margin="normal"
                                 variant="standard"
+                                type='number'
                                 // error={error}
                             />
                         </Grid>
